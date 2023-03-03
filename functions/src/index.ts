@@ -42,6 +42,12 @@ exports.onScraperComplete = functions.https.onRequest(async(request, response) =
 
   const data = await fetchResults(id);
 
+  await adminDb.collection('searches').doc(id).set({
+    status: 'complete',
+    updatedAt: admin.firestore.Timestamp.now(),
+    results: data,
+  }, { merge: true });
+
   functions.logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
