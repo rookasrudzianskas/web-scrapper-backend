@@ -36,6 +36,7 @@ exports.onScraperComplete = functions.https.onRequest(async(request, response) =
   if(!success) {
     await adminDb.collection('searches').doc(id).set({
       status: 'error',
+      // updatedAt: finished
       updatedAt: admin.firestore.Timestamp.now(),
     }, { merge: true });
   }
@@ -48,8 +49,10 @@ exports.onScraperComplete = functions.https.onRequest(async(request, response) =
     results: data,
   }, { merge: true });
 
+  console.log('<><><><><><> FULL CIRCLE <><><><><><><>');
+
   functions.logger.info("Hello logs!", {structuredData: true});
-  response.send("Hello from Firebase!");
+  response.send("Scraping function have finished!");
 });
 
 
