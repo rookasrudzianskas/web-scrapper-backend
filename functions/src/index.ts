@@ -31,13 +31,13 @@ const fetchResults: any = async (id) => {
 exports.onScraperComplete = functions.https.onRequest(async(request, response) => {
   console.log('SCRAPE COMPLETE >>>>>> :', request.body);
 
-  const { success, id } = request.body;
+  const { success, id, finished } = request.body;
 
   if(!success) {
     await adminDb.collection('searches').doc(id).set({
       status: 'error',
-      // updatedAt: finished
-      updatedAt: admin.firestore.Timestamp.now(),
+      updatedAt: finished,
+      // updatedAt: admin.firestore.Timestamp.now(),
     }, { merge: true });
   }
 
@@ -45,7 +45,8 @@ exports.onScraperComplete = functions.https.onRequest(async(request, response) =
 
   await adminDb.collection('searches').doc(id).set({
     status: 'complete',
-    updatedAt: admin.firestore.Timestamp.now(),
+    // updatedAt: admin.firestore.Timestamp.now(),
+    updatedAt: finished,
     results: data,
   }, { merge: true });
 
