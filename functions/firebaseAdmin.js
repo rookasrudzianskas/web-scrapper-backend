@@ -1,6 +1,6 @@
-const admin = require('firebase-admin');
-const getApps = require("firebase-admin/app" );
-const serviceAccount = require('./serviceAccountKey.json');
+import * as admin from 'firebase-admin';
+import { getApps } from "firebase-admin/app";
+const serviceAccount = require('serviceAccountKey.json');
 
 if(!getApps().length) {
     admin.initializeApp({
@@ -10,4 +10,4 @@ if(!getApps().length) {
 
 const adminDb = admin.firestore();
 
-module.exports = adminDb;
+export { adminDb };
