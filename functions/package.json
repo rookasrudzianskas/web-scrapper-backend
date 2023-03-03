@@ -8,6 +8,7 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
+  "type":"commonjs",
   "engines": {
     "node": "18"
   },
