@@ -8,7 +8,18 @@ import * as admin from 'firebase-admin';
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
 const fetchResults = async (id) => {
-  const api_key = 'AIzaSyB0XZ0Z4Z4Z4Z4Z4Z4Z4Z4Z4Z4Z4Z4Z4Z4';
+  const api_key = process.env.BRIGHTDATA_API_KEY;
+
+  const res = await fetch(`https://api.brightdata.com/dca/dataset?id=${id}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${api_key}`,
+    },
+  });
+
+  const data = await res.json();
+
+
 }
 
 exports.onScraperComplete = functions.https.onRequest(async(request, response) => {
