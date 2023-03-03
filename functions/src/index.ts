@@ -19,7 +19,10 @@ const fetchResults = async (id) => {
 
   const data = await res.json();
 
-
+  if(data.status === "building" || data.status === "collecting") {
+    console.log('NOT COMPLETE YET >>>>>, TRYING AGAIN', data.status);
+    return fetchResults(id);
+  }
 }
 
 exports.onScraperComplete = functions.https.onRequest(async(request, response) => {
