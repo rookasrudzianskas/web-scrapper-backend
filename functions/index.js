@@ -4,6 +4,7 @@ const functions = require("firebase-functions");
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
 exports.onScraperComplete = functions.https.onRequest((request, response) => {
+  console.log('SCRAPE COMPLETE >>>>>> :', request.body);
   functions.logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
