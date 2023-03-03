@@ -1,6 +1,8 @@
 # Express Backend Application with Firebase and Bright Data
 
 This is a backend application built using Express framework that integrates with Firebase and Bright Data to retrieve and store data.
+The live application is available [Amazon Web Scraper](https://roookas-web-scraper.vercel.app/)
+With love from [Rokas Rudzianskas](https://byrookas.com) with ❤️
 
 ## Features
 
