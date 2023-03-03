@@ -7,7 +7,7 @@ import * as admin from 'firebase-admin';
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
-const fetchResults = async (id) => {
+const fetchResults: any = async (id) => {
   const api_key = process.env.BRIGHTDATA_API_KEY;
 
   const res = await fetch(`https://api.brightdata.com/dca/dataset?id=${id}`, {
@@ -18,11 +18,14 @@ const fetchResults = async (id) => {
   });
 
   const data = await res.json();
+  console.log('DEBUG #1')
 
   if(data.status === "building" || data.status === "collecting") {
     console.log('NOT COMPLETE YET >>>>>, TRYING AGAIN', data.status);
     return fetchResults(id);
   }
+  console.log('DEBUG #2');
+  return data;
 }
 
 exports.onScraperComplete = functions.https.onRequest(async(request, response) => {
