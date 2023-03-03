@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {adminDb} from "./firebaseAdmin";
 
 const functions = require("firebase-functions");
@@ -29,4 +30,4 @@ exports.onScraperComplete = functions.https.onRequest(async(request, response) =
 });
 
 
-// https://19fb-88-135-27-201.ngrok.io/rookas-big-dataa/us-central1/onScraperComplete
+// https://acb0-88-135-27-201.ngrok.io/rookas-big-dataa/us-central1/onScraperComplete
